@@ -7,6 +7,7 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_tour/home/consultation_page.dart';
 import 'package:medical_tour/home/testinomial_data.dart';
+import 'package:medical_tour/utils/analytics_manager.dart';
 import 'package:medical_tour/utils/constants.dart';
 import 'package:medical_tour/utils/dropdown_widget.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -62,6 +63,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    AnalyticsManager.instance.amplitude.logEvent("TestingHome");
     _phoneController = TextEditingController();
     _initVideo();
     super.initState();

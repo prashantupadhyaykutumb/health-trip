@@ -1,4 +1,5 @@
 class Constants {
+  static const amplitudeApiKey = "c56de989f1940115da9025e33cd8f15c";
   static final List<String> countries = [
     "Afghanistan",
     "Albania",
@@ -396,26 +397,25 @@ class Constants {
   ];
 
   static final List<String> medicalIssues = [
-  "Cardiac surgery",
-  "Orthopedic surgery",
-  "Joint replacement",
-  "Spinal surgery",
-  "Cancer treatment",
-  "Cosmetic surgery",
-  "Dental surgery",
-  "Fertility treatments",
-  "Organ transplant",
-  "Eye surgery",
-  "Weight loss surgery",
-  "Neurosurgery",
-  "Kidney dialysis",
-  "Liver transplant",
-  "Bariatric surgery",
-  "Urology treatments",
-  "ENT surgery",
-  "General surgery",
-  "Gastroenterology",
-  "Rheumatology"
-];
-
+    "Cardiac surgery",
+    "Orthopedic surgery",
+    "Joint replacement",
+    "Spinal surgery",
+    "Cancer treatment",
+    "Cosmetic surgery",
+    "Dental surgery",
+    "Fertility treatments",
+    "Organ transplant",
+    "Eye surgery",
+    "Weight loss surgery",
+    "Neurosurgery",
+    "Kidney dialysis",
+    "Liver transplant",
+    "Bariatric surgery",
+    "Urology treatments",
+    "ENT surgery",
+    "General surgery",
+    "Gastroenterology",
+    "Rheumatology"
+  ];
 }

@@ -4,14 +4,25 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medical_tour/home/consultation_page.dart';
 import 'package:medical_tour/home/home_page.dart';
+import 'package:medical_tour/utils/analytics_manager.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
-  await ScreenUtil.ensureScreenSize();
+  await _initAmplitude();
   runApp(const MainApp());
 }
+
+Future<void> _initAmplitude() async {
+  try {
+    await AnalyticsManager.instance.init();
+    await AnalyticsManager.instance.amplitude.logEvent("TestingLaunch");
+  } catch (e) {
+    print(e);
+  }
+}
+
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
