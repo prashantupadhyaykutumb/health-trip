@@ -7,6 +7,7 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_tour/home/consultation_page.dart';
 import 'package:medical_tour/home/testinomial_data.dart';
+import 'package:medical_tour/utils/constants.dart';
 import 'package:medical_tour/utils/dropdown_widget.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:video_player/video_player.dart';
@@ -571,17 +572,7 @@ class _HomePageState extends State<HomePage> {
           width: .1.sw,
           child: AppDropDown(
             hasError: country == null,
-            items: [
-              "Brazil",
-              "Tunisia",
-              'Canada',
-              "Brazil",
-              "Tunisia",
-              'Canada',
-              "Brazil",
-              "Tunisia",
-              'Canada'
-            ],
+            items: Constants.countries,
             hintText: "Select Country",
             callback: (item) {
               setState(() {
@@ -614,17 +605,7 @@ class _HomePageState extends State<HomePage> {
           width: .1.sw,
           child: AppDropDown(
             hasError: illness == null,
-            items: [
-              "Brazil",
-              "Tunisia",
-              'Canada',
-              "Brazil",
-              "Tunisia",
-              'Canada',
-              "Brazil",
-              "Tunisia",
-              'Canada'
-            ],
+            items: Constants.medicalIssues,
             hintText: "Select Treatment",
             callback: (item) {
               setState(() {
@@ -677,17 +658,7 @@ class _HomePageState extends State<HomePage> {
                         fontSize: isLargeScreen(context) ? 4.sp : 12.sp),
                   ),
                 ),
-                items: [
-                  "+91",
-                  "+92",
-                  '+93',
-                  "+94",
-                  "+95",
-                  '+96',
-                  "+97",
-                  "+98",
-                  '+99'
-                ],
+                items: Constants.countryCodes,
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   dropdownSearchDecoration: InputDecoration(
                       errorText: (phoneCode == null) || (phoneNumber == null)
@@ -750,17 +721,7 @@ class _HomePageState extends State<HomePage> {
           ),
           AppDropDown(
             hasError: country == null,
-            items: [
-              "Brazil",
-              "Tunisia",
-              'Canada',
-              "Brazil",
-              "Tunisia",
-              'Canada',
-              "Brazil",
-              "Tunisia",
-              'Canada'
-            ],
+            items: Constants.countries,
             hintText: "Select Country",
             callback: (item) {
               setState(() {
@@ -792,17 +753,7 @@ class _HomePageState extends State<HomePage> {
           ),
           AppDropDown(
             hasError: illness == null,
-            items: [
-              "Brazil",
-              "Tunisia",
-              'Canada',
-              "Brazil",
-              "Tunisia",
-              'Canada',
-              "Brazil",
-              "Tunisia",
-              'Canada'
-            ],
+            items:  Constants.medicalIssues,
             hintText: "Select Treatment",
             callback: (item) {
               setState(() {
@@ -857,17 +808,7 @@ class _HomePageState extends State<HomePage> {
                           fontSize: isLargeScreen(context) ? 4.sp : 12.sp),
                     ),
                   ),
-                  items: [
-                    "+91",
-                    "+92",
-                    '+93',
-                    "+94",
-                    "+95",
-                    '+96',
-                    "+97",
-                    "+98",
-                    '+99'
-                  ],
+                  items: Constants.countryCodes,
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
                         errorText: (phoneCode == null) || (phoneNumber == null)
