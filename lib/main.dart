@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medical_tour/home/home_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
-
+  await ScreenUtil.ensureScreenSize();
   runApp(const MainApp());
 }
 
@@ -23,6 +26,13 @@ class MainApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K')
         ]);
       },
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme,
+        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        useMaterial3: true,
+      ),
       initialRoute: '/home',
       onGenerateRoute: (settings) {
         String routeName = settings.name.toString().toLowerCase();
