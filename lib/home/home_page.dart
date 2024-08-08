@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
-                    fontSize: isLargeScreen(context) ? 6.sp : 12.sp,
+                    fontSize: 14,
                     height: 1.5,
                     shadows: const [
                       Shadow(
