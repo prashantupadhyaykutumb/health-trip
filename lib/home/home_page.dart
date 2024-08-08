@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
             FlutterCarousel(
               options: CarouselOptions(
                 autoPlay: true,
-                height: isLargeScreen(context) ? .2.sh : .35.sh,
+                height: isLargeScreen(context) ? .2.sh : .4.sh,
                 showIndicator: true,
                 slideIndicator: const CircularSlideIndicator(
                     slideIndicatorOptions: SlideIndicatorOptions(
