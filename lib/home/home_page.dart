@@ -116,6 +116,7 @@ class _HomePageState extends State<HomePage> {
                   fontSize: 24,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 8.h,
@@ -123,7 +124,7 @@ class _HomePageState extends State<HomePage> {
             FlutterCarousel(
               options: CarouselOptions(
                 autoPlay: true,
-                height: isLargeScreen(context) ? .2.sh : .3.sh,
+                height: isLargeScreen(context) ? .2.sh : .35.sh,
                 showIndicator: true,
                 slideIndicator: const CircularSlideIndicator(
                     slideIndicatorOptions: SlideIndicatorOptions(
@@ -135,7 +136,6 @@ class _HomePageState extends State<HomePage> {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
-                      height: .15.sh,
                       padding: EdgeInsets.all(12.h),
                       margin: EdgeInsets.only(left: 8.h, top: 8.h),
                       decoration: BoxDecoration(
@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                             width: 16.h,
                           ),
                           SizedBox(
-                            width: isLargeScreen(context) ? .3.sw : .5.sw,
+                            width: isLargeScreen(context) ? .3.sw : .4.sw,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                                 Text(
                                   data.title,
                                   style: const TextStyle(
-                                      color: Colors.black, fontSize: 14),
+                                      color: Colors.black, fontSize: 12),
                                 ),
                                 const SizedBox(
                                   height: 8,
@@ -753,7 +753,7 @@ class _HomePageState extends State<HomePage> {
           ),
           AppDropDown(
             hasError: illness == null,
-            items:  Constants.medicalIssues,
+            items: Constants.medicalIssues,
             hintText: "Select Treatment",
             callback: (item) {
               setState(() {
