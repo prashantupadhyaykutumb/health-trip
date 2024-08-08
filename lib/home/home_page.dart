@@ -19,6 +19,10 @@ class _HomePageState extends State<HomePage> {
   late VideoPlayerController _videoController;
   bool _isVideoInitialised = false;
   late TextEditingController _phoneController;
+  String? country = "";
+  String? illness = "";
+  String? phoneNumber = "";
+  String? phoneCode = "";
 
   @override
   void initState() {
@@ -48,7 +52,37 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: ListView(
         children: [
-          isLargeScreen(context) ? _mainWidgetLarge() : _mainWidgetWeb()
+          isLargeScreen(context) ? _mainWidgetLarge() : _mainWidgetWeb(),
+          SizedBox(
+            height: isLargeScreen(context) ? .1.sh : 16.h
+          ),
+          _howDoWeWork()
+        ],
+      ),
+    );
+  }
+
+  Widget _howDoWeWork() {
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 16.h),
+      child: Column(
+        children: [
+          const Text(
+            "Medical tourism journey made simple.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 8.h,
+          ),
+          isLargeScreen(context)
+              ? Image.network(
+                  width: .6.sw,
+                  "https://media.crafto.app/test/3319x756/e0f3a805-1d4e-4f72-9236-5ec99631e811?dimension=3319x756")
+              : Image.network(
+                  width: .8.sw,
+                  "https://media.crafto.app/test/1896x1635/ef7c5d5c-ca1e-4c88-9804-231e34a5e6a2?dimension=1896x1635")
         ],
       ),
     );
@@ -88,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 8,
                 ),
-                Text(
+                const Text(
                   "Healthtrip streamlines your medical travel experience by offering personalized assistance from start to finish.",
                   style: TextStyle(
                     color: Colors.white,
@@ -119,12 +153,12 @@ class _HomePageState extends State<HomePage> {
 
   Widget _mainWidgetWeb() {
     return SizedBox(
-      height: 1.sh,
+      height: .75.sh,
       child: Stack(
         children: [
           _videoWidget(),
           Positioned(
-            top: isLargeScreen(context) ? 0 : 0,
+            top:  60.h,
             left: 0,
             right: 0,
             bottom: 0,
@@ -216,9 +250,9 @@ class _HomePageState extends State<HomePage> {
   Widget _infoWidgetLargeScreen() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.h),
-      decoration: BoxDecoration(boxShadow: [
+      decoration: BoxDecoration(boxShadow: const [
         BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
+          color: Colors.black38,
           spreadRadius: 5,
           blurRadius: 7,
           offset: Offset(0, 3), // changes position of shadow
@@ -250,33 +284,51 @@ class _HomePageState extends State<HomePage> {
               indent: 10,
               endIndent: 10,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 0.h),
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16.h),
-              decoration: BoxDecoration(
-                  color: Color(0xffe48822),
-                  borderRadius: BorderRadius.circular(6.r)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.chat,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 4.h,
-                  ),
-                  Text(
-                    "Chat with a health expert now",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
+            InkWell(
+              onTap: () {
+                onButtonCLick();
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 0.h),
+                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16.h),
+                decoration: BoxDecoration(
+                    color: Color(0xffe48822),
+                    borderRadius: BorderRadius.circular(6.r)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.chat,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 4.h,
+                    ),
+                    const Text(
+                      "Chat with a health expert now",
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
               ),
             )
           ],
         ),
       ),
     );
+  }
+
+  void onButtonCLick() {
+    if (country == "") {
+      country = null;
+    }
+    if (illness == "") {
+      illness = null;
+    }
+    if (phoneNumber == "") {
+      phoneNumber = null;
+    }
+    setState(() {});
   }
 
   Widget _infoWidget() {
@@ -297,28 +349,33 @@ class _HomePageState extends State<HomePage> {
           _itemInfo1(),
           _itemInfo2(),
           _itemInfo3(),
-          Container(
-            width: isLargeScreen(context) ? .4.sw : .8.sw,
-            margin: EdgeInsets.symmetric(vertical: 16.h),
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-            decoration: BoxDecoration(
-                color: Color(0xffe48822),
-                borderRadius: BorderRadius.circular(6.r)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.chat,
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  width: 4.h,
-                ),
-                Text(
-                  "Chat with a health expert now",
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
+          InkWell(
+            onTap: () {
+              onButtonCLick();
+            },
+            child: Container(
+              width: isLargeScreen(context) ? .4.sw : .8.sw,
+              margin: EdgeInsets.symmetric(vertical: 16.h),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+              decoration: BoxDecoration(
+                  color: Color(0xffe48822),
+                  borderRadius: BorderRadius.circular(6.r)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.chat,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 4.h,
+                  ),
+                  const Text(
+                    "Chat with a health expert now",
+                    style: TextStyle(color: Colors.white),
+                  )
+                ],
+              ),
             ),
           )
         ],
@@ -345,6 +402,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           width: .1.sw,
           child: AppDropDown(
+            hasError: country == null,
             items: [
               "Brazil",
               "Tunisia",
@@ -357,7 +415,11 @@ class _HomePageState extends State<HomePage> {
               'Canada'
             ],
             hintText: "Select Country",
-            callback: (item) {},
+            callback: (item) {
+              setState(() {
+                country = item;
+              });
+            },
           ),
         )
       ],
@@ -383,6 +445,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           width: .1.sw,
           child: AppDropDown(
+            hasError: illness == null,
             items: [
               "Brazil",
               "Tunisia",
@@ -395,7 +458,11 @@ class _HomePageState extends State<HomePage> {
               'Canada'
             ],
             hintText: "Select Treatment",
-            callback: (item) {},
+            callback: (item) {
+              setState(() {
+                illness = item;
+              });
+            },
           ),
         )
       ],
@@ -455,21 +522,35 @@ class _HomePageState extends State<HomePage> {
                 ],
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   dropdownSearchDecoration: InputDecoration(
+                      errorText: (phoneCode == null) || (phoneNumber == null)
+                          ? "required"
+                          : null,
+
                       // hintText: widget.hintText,
                       hintText: "+91"),
                 ),
-                onChanged: print,
+                onChanged: (value) {
+                  setState(() {
+                    phoneCode = value;
+                  });
+                },
                 // selectedItem: "+91",
               ),
             ),
             SizedBox(
               width: 100.h,
               child: TextField(
+                onChanged: (value) {
+                  setState(() {
+                    phoneNumber = value;
+                  });
+                },
                 controller: _phoneController,
                 decoration: InputDecoration(
-                    border: InputBorder.none,
                     hintText: "Enter your mobile",
-                    hintStyle: TextStyle(
+                    errorText: phoneNumber == null ? "" : null,
+                    contentPadding: const EdgeInsets.all(3),
+                    hintStyle: const TextStyle(
                         fontFamily: null,
                         color: Colors.grey,
                         fontWeight: FontWeight.normal,
@@ -500,6 +581,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           AppDropDown(
+            hasError: country == null,
             items: [
               "Brazil",
               "Tunisia",
@@ -512,7 +594,11 @@ class _HomePageState extends State<HomePage> {
               'Canada'
             ],
             hintText: "Select Country",
-            callback: (item) {},
+            callback: (item) {
+              setState(() {
+                country = item;
+              });
+            },
           )
         ],
       ),
@@ -537,6 +623,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           AppDropDown(
+            hasError: illness == null,
             items: [
               "Brazil",
               "Tunisia",
@@ -549,7 +636,11 @@ class _HomePageState extends State<HomePage> {
               'Canada'
             ],
             hintText: "Select Treatment",
-            callback: (item) {},
+            callback: (item) {
+              setState(() {
+                illness = item;
+              });
+            },
           )
         ],
       ),
@@ -611,20 +702,32 @@ class _HomePageState extends State<HomePage> {
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
+                        errorText: (phoneCode == null) || (phoneNumber == null)
+                            ? "required"
+                            : null,
                         // hintText: widget.hintText,
                         hintText: "+91"),
                   ),
-                  onChanged: print,
+                  onChanged: (value) {
+                    setState(() {
+                      phoneCode = value;
+                    });
+                  },
                   // selectedItem: "+91",
                 ),
               ),
               Expanded(
                 child: TextField(
                   controller: _phoneController,
+                  onChanged: (value) {
+                    setState(() {
+                      phoneNumber = value;
+                    });
+                  },
                   decoration: InputDecoration(
-                      border: InputBorder.none,
+                      errorText: phoneNumber == null ? "" : null,
                       hintText: "Enter your mobile",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                           fontFamily: null,
                           color: Colors.grey,
                           fontWeight: FontWeight.normal,
