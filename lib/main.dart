@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medical_tour/home/consultation_page.dart';
 import 'package:medical_tour/home/home_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 

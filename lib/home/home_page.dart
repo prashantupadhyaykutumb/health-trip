@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_tour/home/consultation_page.dart';
 import 'package:medical_tour/home/testinomial_data.dart';
 import 'package:medical_tour/utils/dropdown_widget.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -108,22 +109,24 @@ class _HomePageState extends State<HomePage> {
         width: isLargeScreen(context) ? .6.sw : 1.sw,
         child: Column(
           children: [
-           const  Text(
+            const Text(
               "How our patients feel about us?",
               style: TextStyle(
                   fontSize: 24,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8.h,),
+            SizedBox(
+              height: 8.h,
+            ),
             FlutterCarousel(
               options: CarouselOptions(
                 autoPlay: true,
-                height: isLargeScreen(context)  ? .2.sh : .3.sh,
+                height: isLargeScreen(context) ? .2.sh : .3.sh,
                 showIndicator: true,
-                slideIndicator:const  CircularSlideIndicator(
+                slideIndicator: const CircularSlideIndicator(
                     slideIndicatorOptions: SlideIndicatorOptions(
-                      indicatorBorderColor: Colors.green,
+                        indicatorBorderColor: Colors.green,
                         currentIndicatorColor: Colors.green,
                         indicatorBackgroundColor: Colors.white)),
               ),
@@ -143,9 +146,8 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100.r),
-                              border: Border.all(color: Colors.green)
-                            ),
+                                borderRadius: BorderRadius.circular(100.r),
+                                border: Border.all(color: Colors.green)),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100.r),
                               child: Image.network(
@@ -160,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                             width: 16.h,
                           ),
                           SizedBox(
-                            width: isLargeScreen(context)?  .3.sw : .5.sw,
+                            width: isLargeScreen(context) ? .3.sw : .5.sw,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -485,14 +487,16 @@ class _HomePageState extends State<HomePage> {
   void onButtonCLick() {
     if (country == "") {
       country = null;
-    }
-    if (illness == "") {
+      setState(() {});
+    } else if (illness == "") {
       illness = null;
-    }
-    if (phoneNumber == "") {
+      setState(() {});
+    } else if (phoneNumber == "") {
       phoneNumber = null;
+      setState(() {});
+    } else {
+      _moveToConsultaionPage();
     }
-    setState(() {});
   }
 
   Widget _infoWidget() {
@@ -907,5 +911,13 @@ class _HomePageState extends State<HomePage> {
 
   bool isLargeScreen(BuildContext context) {
     return MediaQuery.sizeOf(context).width >= 600;
+  }
+
+  _moveToConsultaionPage() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ConsultationPage(),
+        ));
   }
 }
