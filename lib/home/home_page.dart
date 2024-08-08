@@ -3,7 +3,9 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_tour/home/testinomial_data.dart';
 import 'package:medical_tour/utils/dropdown_widget.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:video_player/video_player.dart';
@@ -23,6 +25,38 @@ class _HomePageState extends State<HomePage> {
   String? illness = "";
   String? phoneNumber = "";
   String? phoneCode = "";
+  final List<TestinomialData> _testinomialsData = [
+    TestinomialData(
+        dp:
+            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+        title:
+            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
+        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+    TestinomialData(
+        dp:
+            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+        title:
+            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
+        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+    TestinomialData(
+        dp:
+            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+        title:
+            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
+        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+    TestinomialData(
+        dp:
+            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+        title:
+            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
+        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+    TestinomialData(
+        dp:
+            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+        title:
+            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
+        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+  ];
 
   @override
   void initState() {
@@ -50,21 +84,151 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ListView(
+        shrinkWrap: true,
         children: [
           isLargeScreen(context) ? _mainWidgetLarge() : _mainWidgetWeb(),
+          SizedBox(height: isLargeScreen(context) ? .1.sh : 16.h),
+          _howDoWeWork(),
+          _testinomials(),
           SizedBox(
-            height: isLargeScreen(context) ? .1.sh : 16.h
+            height: .1.sh,
           ),
-          _howDoWeWork()
         ],
+      ),
+    );
+  }
+
+  Widget _testinomials() {
+    return UnconstrainedBox(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 0.h),
+        margin: EdgeInsets.only(top: 16.h),
+        width: isLargeScreen(context) ? .6.sw : 1.sw,
+        child: Column(
+          children: [
+           const  Text(
+              "How our patients feel about us?",
+              style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 8.h,),
+            FlutterCarousel(
+              options: CarouselOptions(
+                autoPlay: true,
+                height: isLargeScreen(context)  ? .2.sh : .3.sh,
+                showIndicator: true,
+                slideIndicator:const  CircularSlideIndicator(
+                    slideIndicatorOptions: SlideIndicatorOptions(
+                      indicatorBorderColor: Colors.green,
+                        currentIndicatorColor: Colors.green,
+                        indicatorBackgroundColor: Colors.white)),
+              ),
+              items: _testinomialsData.map((data) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: .15.sh,
+                      padding: EdgeInsets.all(12.h),
+                      margin: EdgeInsets.only(left: 8.h, top: 8.h),
+                      decoration: BoxDecoration(
+                          color: const Color(0xfff7f7f7),
+                          borderRadius: BorderRadius.circular(4.r)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100.r),
+                              border: Border.all(color: Colors.green)
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100.r),
+                              child: Image.network(
+                                data.dp,
+                                width: 80,
+                                height: 80,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 16.h,
+                          ),
+                          SizedBox(
+                            width: isLargeScreen(context)?  .3.sw : .5.sw,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data.title,
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 14),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                  data.subTitle,
+                                  style: const TextStyle(
+                                      color: Colors.grey, fontSize: 11),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+
+            // Row(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     SizedBox(
+            //       width: .25.sw,
+            //       child: const Column(
+            //         crossAxisAlignment: CrossAxisAlignment.start,
+            //         children: [
+            //           Text(
+            //             "How our patients feel about us?",
+            //             style: TextStyle(
+            //                 fontSize: 24,
+            //                 color: Colors.black,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //           SizedBox(
+            //             height: 8,
+            //           ),
+            //           Text(
+            //             "Helped patients from across 60+ countries - Kenya, Congo, Ethiopia, Tanzania, Oman, UAE, Qatar etc. make an informed decision for their treatment.",
+            //             style: TextStyle(
+            //                 fontSize: 12,
+            //                 color: Colors.grey,
+            //                 fontWeight: FontWeight.normal),
+            //           )
+            //         ],
+            //       ),
+            //     ),
+
+            //   ],
+            // ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _howDoWeWork() {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 16.h),
+      padding: EdgeInsets.symmetric(horizontal: 16.h),
       child: Column(
         children: [
           const Text(
@@ -158,7 +322,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           _videoWidget(),
           Positioned(
-            top:  60.h,
+            top: 60.h,
             left: 0,
             right: 0,
             bottom: 0,
