@@ -401,25 +401,16 @@ class Constants {
 
   static final List<String> medicalIssues = [
     "Cardiac surgery",
-    "Orthopedic surgery",
-    "Joint replacement",
-    "Spinal surgery",
-    "Cancer treatment",
-    "Cosmetic surgery",
-    "Dental surgery",
-    "Fertility treatments",
-    "Organ transplant",
-    "Eye surgery",
-    "Weight loss surgery",
+    "Organ Transplant",
+    "Spine Care",
+    "Joint Replacement",
+    "Cosmetic",
+    "Orthodontic Surgery",
     "Neurosurgery",
-    "Kidney dialysis",
-    "Liver transplant",
-    "Bariatric surgery",
-    "Urology treatments",
-    "ENT surgery",
-    "General surgery",
-    "Gastroenterology",
-    "Rheumatology"
+    "Bariatric Surgery",
+    "IVF",
+    "Surrogacy"
+
   ];
 
   static final Map<String, String> countryCodeToName = {

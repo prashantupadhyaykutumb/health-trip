@@ -32,34 +32,34 @@ class _HomePageState extends State<HomePage> {
   final List<TestinomialData> _testinomialsData = [
     TestinomialData(
         dp:
-            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+             "https://media.crafto.app/test/200x200/ba25360c-9f9d-4645-9be8-f6813edb5174?dimension=200x200",
         title:
-            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
-        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+            "I was nervous about traveling to India for surgery, but the experience was fantastic. The team was transparent from start to finish, and the quality of care was exceptional. I felt well-supported and informed throughout the entire process",
+        subTitle: "Arif Chowdhury, Bangladesh"),
     TestinomialData(
         dp:
-            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+            "https://media.crafto.app/test/200x200/ddfd65d2-bd17-4c07-83c1-0703dfadb0e4?dimension=200x200",
         title:
-            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
-        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+            "Trust and communication were key for me, and this service delivered. The team in India provided detailed information about the procedure and doctors, making me confident in my choice. The hospital facilities were top-notch, and the care was excellent",
+        subTitle: "Nabila Rahman, Rwanda - Oman"),
     TestinomialData(
         dp:
-            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+            "https://media.crafto.app/test/200x200/d531ffc3-20a2-4c1e-b387-20b1e1ab851a?dimension=200x200",
         title:
-            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
-        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+            "The professionalism and transparency of this service stood out. From the first consultation to the procedure in India, I felt fully informed and comfortable. The medical care was outstanding, and I’m very satisfied with the results.",
+        subTitle: "Zareena Shakir, Iraq"),
     TestinomialData(
         dp:
-            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+           "https://media.crafto.app/test/200x200/840cdff1-3a94-4859-94ef-b004a0439c9e?dimension=200x200",
         title:
-            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
-        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+            "I was skeptical about treatment in India, but the team quickly earned my trust. They provided clear information and made sure I understood every detail. The hospital was modern, and the care was excellent. I’m impressed by the transparency and quality.",
+        subTitle: "Rishan Mohamed, Maldives"),
     TestinomialData(
         dp:
-            "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+            "https://media.crafto.app/test/200x200/1940a9de-441f-40fe-aa77-34f3f3ad5515?dimension=200x200",
         title:
-            "The Avocure team were great at answering my questions and working with me figure out a plan for getting this done. With their help, I felt much more confident for such a major operation.",
-        subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
+            "My experience with this service in India was excellent. The transparent pricing and clear explanations were appreciated. The medical team was skilled, and the facilities were clean and well-equipped. I felt safe and well-cared-for throughout my journey.",
+        subTitle: "Amal Al-Said, Oman"),
   ];
 
   final List<TestinomialData> _howDoWeWorkData = [
@@ -201,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                 showIndicator: true,
                 slideIndicator: const CircularSlideIndicator(
                     slideIndicatorOptions: SlideIndicatorOptions(
-                        indicatorBorderColor:Constants.primary,
+                        indicatorBorderColor: Constants.primary,
                         currentIndicatorColor: Constants.primary,
                         indicatorBackgroundColor: Colors.white)),
               ),
@@ -333,7 +333,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _tripBenefits() {
     return Container(
-      width: isLargeScreen(context) ? .7.sw :.9.sw,
+      width: isLargeScreen(context) ? .7.sw : .9.sw,
       alignment: Alignment.center,
       color: Colors.white,
       margin: const EdgeInsets.only(top: 16, left: 16),
@@ -344,7 +344,8 @@ class _HomePageState extends State<HomePage> {
             physics: NeverScrollableScrollPhysics(),
             itemCount: _howDoWeWorkData.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-               crossAxisCount: isLargeScreen(context) ? 4 : 2,),
+              crossAxisCount: isLargeScreen(context) ? 4 : 2,
+            ),
             itemBuilder: (context, index) {
               final item = _howDoWeWorkData[index];
               return _itemImageWithText(item.dp, item.title);
@@ -658,7 +659,7 @@ class _HomePageState extends State<HomePage> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.home,color: Constants.primary),
+            const Icon(Icons.home, color: Constants.primary),
             SizedBox(
               width: 4.h,
             ),
@@ -691,7 +692,7 @@ class _HomePageState extends State<HomePage> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.medical_information,color: Constants.primary),
+            const Icon(Icons.medical_information, color: Constants.primary),
             SizedBox(
               width: 4.h,
             ),
@@ -724,7 +725,7 @@ class _HomePageState extends State<HomePage> {
       children: [
         Row(
           children: [
-            const Icon(Icons.phone,color: Constants.primary),
+            const Icon(Icons.phone, color: Constants.primary),
             SizedBox(
               width: 4.h,
             ),
@@ -820,7 +821,10 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             children: [
-              const Icon(Icons.home,color: Constants.primary,),
+              const Icon(
+                Icons.home,
+                color: Constants.primary,
+              ),
               SizedBox(
                 width: 4.h,
               ),
@@ -852,7 +856,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             children: [
-              const Icon(Icons.medical_information,color: Constants.primary),
+              const Icon(Icons.medical_information, color: Constants.primary),
               SizedBox(
                 width: 4.h,
               ),
@@ -885,7 +889,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             children: [
-              const Icon(Icons.phone,color: Constants.primary),
+              const Icon(Icons.phone, color: Constants.primary),
               SizedBox(
                 width: 4.h,
               ),
