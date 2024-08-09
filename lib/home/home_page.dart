@@ -675,6 +675,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 items: Constants.countryCodes,
+                filterFn: (item, filter) {
+                  final countryName =
+                      Constants.countryCodeToName[item]!.toLowerCase();
+                  return countryName.contains(filter.toLowerCase()) ||
+                      item.contains(filter);
+                },
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   textAlign: TextAlign.center,
                   dropdownSearchDecoration: InputDecoration(
@@ -830,6 +836,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   items: Constants.countryCodes,
+                  filterFn: (item, filter) {
+                    final countryName =
+                        Constants.countryCodeToName[item]!.toLowerCase();
+                    return countryName.contains(filter.toLowerCase()) ||
+                        item.contains(filter);
+                  },
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     textAlign: TextAlign.center,
                     dropdownSearchDecoration: InputDecoration(
