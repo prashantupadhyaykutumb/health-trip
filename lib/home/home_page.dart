@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
         shrinkWrap: true,
         children: [
           isLargeScreen(context) ? _mainWidgetLarge() : _mainWidgetWeb(),
-          SizedBox(height: isLargeScreen(context) ? .1.sh : 16.h),
+          SizedBox(height: isLargeScreen(context) ? .1.sh : .03.sh),
           _howDoWeWork(),
           _testinomials(),
           SizedBox(
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
   Widget _testinomials() {
     return UnconstrainedBox(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 0.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.h),
         margin: EdgeInsets.only(top: 16.h),
         width: isLargeScreen(context) ? .6.sw : 1.sw,
         child: Column(
