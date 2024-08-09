@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
   await _initAmplitude();
+  FlutterNativeSplash.remove();
+
   runApp(const MainApp());
 }
 
@@ -45,7 +48,7 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      initialRoute: '/home',
+      initialRoute: '/consultation',
       onGenerateRoute: (settings) {
         String routeName = settings.name.toString().toLowerCase();
         routeName = routeName.split("?")[0];
@@ -65,7 +68,7 @@ class MainApp extends StatelessWidget {
   _getMaterialPageRoute(RouteSettings settings, String routeName) {
     return MaterialPageRoute(
       settings: settings,
-      builder: (_) => routeName == "success" ? SuccessPage() : HomePage(),
+      builder: (_) => routeName == "success" ? SuccessPage() : ConsultationPage(),
     );
   }
 }

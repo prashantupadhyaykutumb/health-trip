@@ -3,9 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medical_tour/home/testinomial_data.dart';
+import 'package:medical_tour/utils/analytics_manager.dart';
 import 'package:medical_tour/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:universal_html/js.dart' as html;
 
 class ConsultationPage extends StatefulWidget {
   const ConsultationPage({super.key});
@@ -117,25 +120,35 @@ class _ConsultationPageState extends State<ConsultationPage> {
   ];
 
   @override
+  void initState() {
+    AnalyticsManager.instance.amplitude
+        .logEvent("Landed", eventProperties: {"Page Name": "Consultaion"});
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
         shrinkWrap: true,
         children: [
           Center(child: _howDoWeWork()),
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.all(16.h),
-            child: const Text(
-              "Available Doctors",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
-            ),
+          // Container(
+          //   alignment: Alignment.center,
+          //   margin: EdgeInsets.all(16.h),
+          //   child: const Text(
+          //     "Available Doctors",
+          //     style: TextStyle(
+          //         color: Colors.black,
+          //         fontSize: 24,
+          //         fontWeight: FontWeight.bold),
+          //   ),
+          // ),
+          SizedBox(
+            height: 8.h,
           ),
           _doctorsGrid()
         ],
@@ -148,8 +161,9 @@ class _ConsultationPageState extends State<ConsultationPage> {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: _doctors.length,
       shrinkWrap: true,
-      gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 600, childAspectRatio: isLargeScreen(context) ? .95 : .8),
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 600,
+          childAspectRatio: isLargeScreen(context) ? .95 : .8),
       itemBuilder: (context, index) {
         final item = _doctors[index];
         return Container(
@@ -166,11 +180,13 @@ class _ConsultationPageState extends State<ConsultationPage> {
             children: [
               Center(
                 child: CircleAvatar(
-                  radius: isLargeScreen(context) ?64.r : 48.r,
+                  radius: isLargeScreen(context) ? 64.r : 48.r,
                   backgroundImage: NetworkImage(item.dp),
                 ),
               ),
-              SizedBox(height: 16.h,),
+              SizedBox(
+                height: 16.h,
+              ),
               // Container(
               //   margin: EdgeInsets.only(bottom: 16.h),
               //   decoration: BoxDecoration(
@@ -222,7 +238,8 @@ class _ConsultationPageState extends State<ConsultationPage> {
                 height: 8,
               ),
               _textWithIconInRow(
-                  icon: Icons.work_history, text: "Experience: ${item.experience}"),
+                  icon: Icons.work_history,
+                  text: "Experience: ${item.experience}"),
               const SizedBox(
                 height: 4,
               ),
@@ -233,6 +250,8 @@ class _ConsultationPageState extends State<ConsultationPage> {
               ),
               InkWell(
                 onTap: () {
+                  buttonClickPixelEvent();
+
                   launchUrl(
                       Uri.parse(kDebugMode
                           ? 'https://buy.stripe.com/test_9AQ5l70WtbD6eB2bIJ'
@@ -273,7 +292,10 @@ class _ConsultationPageState extends State<ConsultationPage> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon,color: Constants.primary,),
+        Icon(
+          icon,
+          color: Constants.primary,
+        ),
         SizedBox(
           width: 8.w,
         ),
@@ -296,85 +318,80 @@ class _ConsultationPageState extends State<ConsultationPage> {
           SizedBox(
             height: 32.h,
           ),
-          const Text(
-            "Get Your Medical Travel Plan in 3 Steps",
+          Text(
+            "Book consultation to get your Medical Travel Plan* in 24 hours",
             textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+            style:
+                GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 28),
+            // style: TextStyle(
+            //     color: Colors.black, fontSize: 28, fontWeight: FontWeight.w900),
           ),
           const SizedBox(
             height: 8,
           ),
           const Text(
-            "Includes Overall cost, treatment duration and procedure details",
+            "*Plan Includes Overall cost, treatment duration and procedure details",
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.black54,
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.normal,
                 fontStyle: FontStyle.italic),
           ),
-          !isLargeScreen(context)
-              ? FlutterCarousel(
-                  options: CarouselOptions(
-                    height: .25.sh,
-                    viewportFraction: 1,
-                    autoPlay: false,
-                    showIndicator: true,
-                    slideIndicator: const CircularSlideIndicator(
-                        slideIndicatorOptions: SlideIndicatorOptions(
-                            indicatorBorderColor: Constants.primary,
-                            currentIndicatorColor: Constants.primary,
-                            indicatorBackgroundColor: Colors.white)),
-                  ),
-                  items: _howDoWeWorkData.map((data) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          width: isLargeScreen(context) ? .6.sw : .9.sw,
-                          padding: EdgeInsets.all(12.h),
-                          margin: EdgeInsets.only(left: 8.h, top: 8.h),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10.r)),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(100.r),
-                                child: Image.network(
-                                  data.dp,
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 16.h,
-                              ),
-                              Text(
-                                data.title,
-                                style: const TextStyle(
-                                    color: Colors.black, fontSize: 12),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  }).toList(),
-                )
-              : _tripBenefits(),
-          // isLargeScreen(context)
-          //     ? Image.network(
-          //         width: .6.sw,
-          //         "https://media.crafto.app/test/3319x756/e0f3a805-1d4e-4f72-9236-5ec99631e811?dimension=3319x756")
-          //     : Image.network(
-          //         width: .8.sw,
-          //         "https://media.crafto.app/test/1896x1635/ef7c5d5c-ca1e-4c88-9804-231e34a5e6a2?dimension=1896x1635")
+          // !isLargeScreen(context)
+          //     ? FlutterCarousel(
+          //         options: CarouselOptions(
+          //           height: .25.sh,
+          //           viewportFraction: 1,
+          //           autoPlay: false,
+          //           showIndicator: true,
+          //           slideIndicator: const CircularSlideIndicator(
+          //               slideIndicatorOptions: SlideIndicatorOptions(
+          //                   indicatorBorderColor: Constants.primary,
+          //                   currentIndicatorColor: Constants.primary,
+          //                   indicatorBackgroundColor: Colors.white)),
+          //         ),
+          //         items: _howDoWeWorkData.map((data) {
+          //           return Builder(
+          //             builder: (BuildContext context) {
+          //               return Container(
+          //                 width: isLargeScreen(context) ? .6.sw : .9.sw,
+          //                 padding: EdgeInsets.all(12.h),
+          //                 margin: EdgeInsets.only(left: 8.h, top: 8.h),
+          //                 decoration: BoxDecoration(
+          //                     color: Colors.white,
+          //                     borderRadius: BorderRadius.circular(10.r)),
+          //                 child: Column(
+          //                   mainAxisSize: MainAxisSize.min,
+          //                   mainAxisAlignment: MainAxisAlignment.center,
+          //                   crossAxisAlignment: CrossAxisAlignment.center,
+          //                   children: [
+          //                     ClipRRect(
+          //                       borderRadius: BorderRadius.circular(100.r),
+          //                       child: Image.network(
+          //                         data.dp,
+          //                         width: 80,
+          //                         height: 80,
+          //                         fit: BoxFit.cover,
+          //                       ),
+          //                     ),
+          //                     SizedBox(
+          //                       width: 16.h,
+          //                     ),
+          //                     Text(
+          //                       data.title,
+          //                       style: const TextStyle(
+          //                           color: Colors.black, fontSize: 12),
+          //                       textAlign: TextAlign.center,
+          //                     ),
+          //                   ],
+          //                 ),
+          //               );
+          //             },
+          //           );
+          //         }).toList(),
+          //       )
+          //     : _tripBenefits(),
         ],
       ),
     );
@@ -421,5 +438,14 @@ class _ConsultationPageState extends State<ConsultationPage> {
         ),
       ),
     );
+  }
+
+  void buttonClickPixelEvent() {
+    AnalyticsManager.instance.amplitude.logEvent("CLICK_ACTION",
+        eventProperties: {
+          "Page Name": "Consultaion",
+          "type": "BookButtonClick"
+        });
+    html.context.callMethod('fbq', ['trackCustom', 'BookButtonClick']);
   }
 }

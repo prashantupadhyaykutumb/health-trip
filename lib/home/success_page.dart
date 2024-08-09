@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medical_tour/utils/analytics_manager.dart';
 import 'package:medical_tour/utils/constants.dart';
 import 'dart:html';
+import 'package:universal_html/js.dart' as html;
 
 class SuccessPage extends StatefulWidget {
   const SuccessPage({super.key});
@@ -16,8 +17,9 @@ class _SuccessPageState extends State<SuccessPage> {
     super.initState();
     AnalyticsManager.instance.logAmplitudeEvent(
       "Payment Success",
-      amount: "10.99",
+      amount: "10",
     );
+    html.context.callMethod('fbq', ['trackCustom', 'PaymentSuccess']);
   }
 
   @override
