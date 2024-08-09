@@ -4,6 +4,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medical_tour/home/consultation_page.dart';
 import 'package:medical_tour/home/home_page.dart';
+import 'package:medical_tour/home/success_page.dart';
 import 'package:medical_tour/utils/analytics_manager.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -22,7 +23,6 @@ Future<void> _initAmplitude() async {
     print(e);
   }
 }
-
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -53,6 +53,8 @@ class MainApp extends StatelessWidget {
           return _getMaterialPageRoute(settings, "home");
         } else if (routeName == "/") {
           return null;
+        } else if (routeName == "/success") {
+          return _getMaterialPageRoute(settings, "success");
         } else {
           return _getMaterialPageRoute(settings, "home");
         }
@@ -63,7 +65,7 @@ class MainApp extends StatelessWidget {
   _getMaterialPageRoute(RouteSettings settings, String routeName) {
     return MaterialPageRoute(
       settings: settings,
-      builder: (_) => HomePage(),
+      builder: (_) => routeName == "success" ? SuccessPage() : HomePage(),
     );
   }
 }
