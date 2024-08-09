@@ -148,8 +148,8 @@ class _ConsultationPageState extends State<ConsultationPage> {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: _doctors.length,
       shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 600, childAspectRatio: .95),
+      gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 600, childAspectRatio: isLargeScreen(context) ? .95 : .8),
       itemBuilder: (context, index) {
         final item = _doctors[index];
         return Container(
