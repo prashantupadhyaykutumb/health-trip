@@ -65,7 +65,7 @@ class MainApp extends StatelessWidget {
   _getMaterialPageRoute(RouteSettings settings, String routeName) {
     return MaterialPageRoute(
       settings: settings,
-      builder: (_) => routeName == "success" ? SuccessPage() : ConsultationPage(),
+      builder: (_) => routeName == "success" ? SuccessPage() : HomePage(),
     );
   }
 }
