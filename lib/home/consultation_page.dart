@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_tour/home/testinomial_data.dart';
+import 'package:medical_tour/utils/constants.dart';
 
 class ConsultationPage extends StatefulWidget {
   const ConsultationPage({super.key});
@@ -220,13 +221,13 @@ class _ConsultationPageState extends State<ConsultationPage> {
                   padding:
                       EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.h),
                   decoration: BoxDecoration(
-                      color: Color(0xffe48822),
+                      color: Constants.primary,
                       borderRadius: BorderRadius.circular(6.r)),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Book Appointment @ \$10",
+                        "Book Appointment for \$10",
                         style: TextStyle(color: Colors.white),
                       ),
                       Icon(
