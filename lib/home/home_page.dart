@@ -796,6 +796,7 @@ class _HomePageState extends State<HomePage> {
                   });
                 },
                 controller: _phoneController,
+                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                     hintText: "Enter your mobile",
                     errorText: phoneNumber == null ? "" : null,
@@ -953,6 +954,7 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: TextField(
                   controller: _phoneController,
+                  keyboardType: TextInputType.phone,
                   onChanged: (value) {
                     setState(() {
                       phoneNumber = value;
