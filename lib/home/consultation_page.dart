@@ -149,7 +149,7 @@ class _ConsultationPageState extends State<ConsultationPage> {
       itemCount: _doctors.length,
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 600, childAspectRatio: .8),
+          maxCrossAxisExtent: 600, childAspectRatio: .95),
       itemBuilder: (context, index) {
         final item = _doctors[index];
         return Container(
@@ -160,30 +160,43 @@ class _ConsultationPageState extends State<ConsultationPage> {
               borderRadius: BorderRadius.circular(6.r),
               border: Border.all(color: Colors.black, width: .1)),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Spacer(),
-              Container(
-                margin: EdgeInsets.only(bottom: 16.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.r),
-                  color: Colors.grey,
-                ),
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 32.h),
-                child: AspectRatio(
-                  aspectRatio: 1.5,
-                  child: Image.network(
-                    item.dp,
-                  ),
+              Center(
+                child: CircleAvatar(
+                  radius: isLargeScreen(context) ?64.r : 48.r,
+                  backgroundImage: NetworkImage(item.dp),
                 ),
               ),
-              Text(
-                item.name,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
+              SizedBox(height: 16.h,),
+              // Container(
+              //   margin: EdgeInsets.only(bottom: 16.h),
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(4.r),
+              //     color: Colors.white,
+              //   ),
+              //   width: double.infinity,
+              //   padding: EdgeInsets.symmetric(horizontal: 32.h),
+              //   child: ClipRRect(
+              //     borderRadius: BorderRadius.circular(100.r),
+              //     child: Image.network(
+              //       item.dp,
+              //       fit: BoxFit.cover,
+              //       height: 150,
+              //       width: 150,
+              //     ),
+              //   ),
+              // ),
+              Center(
+                child: Text(
+                  item.name,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(
                 height: 4,
@@ -249,7 +262,6 @@ class _ConsultationPageState extends State<ConsultationPage> {
                   ),
                 ),
               ),
-              const Spacer(),
             ],
           ),
         );

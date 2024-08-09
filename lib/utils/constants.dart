@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class Constants {
   static const primary = Color(0xffFF6064);
-  static const amplitudeApiKey = "c56de989f1940115da9025e33cd8f15c";
+  static const amplitudeApiKey = "51b3b623fa787b776627e7fb68826c0a";
   static final List<String> countries = [
     "Afghanistan",
     "Albania",
