@@ -333,6 +333,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget _tripBenefits() {
     return Container(
+      width: isLargeScreen(context) ? .7.sw :.9.sw,
+      alignment: Alignment.center,
       color: Colors.white,
       margin: const EdgeInsets.only(top: 16, left: 16),
       child: Padding(
@@ -341,8 +343,8 @@ class _HomePageState extends State<HomePage> {
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: _howDoWeWorkData.length,
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+               crossAxisCount: isLargeScreen(context) ? 4 : 2,),
             itemBuilder: (context, index) {
               final item = _howDoWeWorkData[index];
               return _itemImageWithText(item.dp, item.title);
@@ -656,7 +658,7 @@ class _HomePageState extends State<HomePage> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.home),
+            const Icon(Icons.home,color: Constants.primary),
             SizedBox(
               width: 4.h,
             ),
@@ -689,7 +691,7 @@ class _HomePageState extends State<HomePage> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.medical_information),
+            const Icon(Icons.medical_information,color: Constants.primary),
             SizedBox(
               width: 4.h,
             ),
@@ -722,7 +724,7 @@ class _HomePageState extends State<HomePage> {
       children: [
         Row(
           children: [
-            const Icon(Icons.phone),
+            const Icon(Icons.phone,color: Constants.primary),
             SizedBox(
               width: 4.h,
             ),
@@ -818,7 +820,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             children: [
-              const Icon(Icons.home),
+              const Icon(Icons.home,color: Constants.primary,),
               SizedBox(
                 width: 4.h,
               ),
@@ -850,7 +852,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             children: [
-              const Icon(Icons.medical_information),
+              const Icon(Icons.medical_information,color: Constants.primary),
               SizedBox(
                 width: 4.h,
               ),
@@ -883,7 +885,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             children: [
-              const Icon(Icons.phone),
+              const Icon(Icons.phone,color: Constants.primary),
               SizedBox(
                 width: 4.h,
               ),

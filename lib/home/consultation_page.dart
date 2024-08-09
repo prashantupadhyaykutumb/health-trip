@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_tour/home/testinomial_data.dart';
 import 'package:medical_tour/utils/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConsultationPage extends StatefulWidget {
   const ConsultationPage({super.key});
@@ -15,17 +18,17 @@ class _ConsultationPageState extends State<ConsultationPage> {
   final List<TestinomialData> _howDoWeWorkData = [
     TestinomialData(
       dp: "https://media.crafto.app/test/300x300/2837269e-ea32-4e07-b1af-226ebd438ede?dimension=300x300",
-      title: "Fantastic Quality",
+      title: "Consult with our health expert",
       subTitle: "",
     ),
     TestinomialData(
       dp: "https://media.crafto.app/test/300x300/e5abd760-0f04-4468-839d-9c1b460c7e10?dimension=300x300",
-      title: "Superb Customer\nSupport",
+      title: "Share your medical condition\nand ask your questions",
       subTitle: "",
     ),
     TestinomialData(
       dp: "https://media.crafto.app/test/300x300/6ce12fd8-aa11-49c3-b82c-0cb7cec27902?dimension=300x300",
-      title: "Exceeded Expectations",
+      title: "Get a comprehensive plan in 24 hours",
       subTitle: "",
     ),
   ];
@@ -88,7 +91,8 @@ class _ConsultationPageState extends State<ConsultationPage> {
     DoctorData(
       dp: "https://media.crafto.app/test/200x200/3cde50ed-6b0c-4154-8798-8ed1f992ab4f?dimension=200x200",
       name: "Dr.Richa Prasad",
-      about: "MBBS Tribhuvan University, Nepal\nSEEDS (Ongoing fellowship) American College of Chest Physician",
+      about:
+          "MBBS Tribhuvan University, Nepal\nSEEDS (Ongoing fellowship) American College of Chest Physician",
       hospital: "Hospital data",
       experience: "8+ years",
       surgeries: "198",
@@ -104,7 +108,8 @@ class _ConsultationPageState extends State<ConsultationPage> {
     DoctorData(
       dp: "https://media.crafto.app/test/200x200/30a110e4-dcad-4cc6-9a80-346103b986da?dimension=200x200",
       name: "Dr.Bhawana Pathak",
-      about: "MBBS Aligarh Muslim University\nMD (General Medicine) Aligarh Muslim University",
+      about:
+          "MBBS Aligarh Muslim University\nMD (General Medicine) Aligarh Muslim University",
       hospital: "Hospital data",
       experience: "18+ years",
       surgeries: "787",
@@ -204,7 +209,7 @@ class _ConsultationPageState extends State<ConsultationPage> {
                 height: 8,
               ),
               _textWithIconInRow(
-                  icon: Icons.work, text: "Experience: ${item.experience}"),
+                  icon: Icons.work_history, text: "Experience: ${item.experience}"),
               const SizedBox(
                 height: 4,
               ),
@@ -214,7 +219,13 @@ class _ConsultationPageState extends State<ConsultationPage> {
                 height: 16,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  launchUrl(
+                      Uri.parse(kDebugMode
+                          ? 'https://buy.stripe.com/test_9AQ5l70WtbD6eB2bIJ'
+                          : 'https://buy.stripe.com/6oE7usdxX0WqeHu9AC'),
+                      webOnlyWindowName: "_self");
+                },
                 child: Container(
                   width: double.infinity,
                   margin: EdgeInsets.symmetric(horizontal: 0.h),
@@ -250,7 +261,7 @@ class _ConsultationPageState extends State<ConsultationPage> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon),
+        Icon(icon,color: Constants.primary,),
         SizedBox(
           width: 8.w,
         ),
@@ -279,10 +290,72 @@ class _ConsultationPageState extends State<ConsultationPage> {
             style: TextStyle(
                 color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
           ),
-          SizedBox(
-            height: 16.h,
+          const SizedBox(
+            height: 8,
           ),
-          _tripBenefits()
+          const Text(
+            "Includes Overall cost, treatment duration and procedure details",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.black54,
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                fontStyle: FontStyle.italic),
+          ),
+          !isLargeScreen(context)
+              ? FlutterCarousel(
+                  options: CarouselOptions(
+                    height: .25.sh,
+                    viewportFraction: 1,
+                    autoPlay: false,
+                    showIndicator: true,
+                    slideIndicator: const CircularSlideIndicator(
+                        slideIndicatorOptions: SlideIndicatorOptions(
+                            indicatorBorderColor: Constants.primary,
+                            currentIndicatorColor: Constants.primary,
+                            indicatorBackgroundColor: Colors.white)),
+                  ),
+                  items: _howDoWeWorkData.map((data) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: isLargeScreen(context) ? .6.sw : .9.sw,
+                          padding: EdgeInsets.all(12.h),
+                          margin: EdgeInsets.only(left: 8.h, top: 8.h),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(100.r),
+                                child: Image.network(
+                                  data.dp,
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 16.h,
+                              ),
+                              Text(
+                                data.title,
+                                style: const TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                )
+              : _tripBenefits(),
           // isLargeScreen(context)
           //     ? Image.network(
           //         width: .6.sw,
