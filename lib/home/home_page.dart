@@ -418,7 +418,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _infoWidgetLargeScreen() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.h),
+      padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 16.h),
       decoration: BoxDecoration(boxShadow: const [
         BoxShadow(
           color: Colors.black38,
@@ -459,25 +459,13 @@ class _HomePageState extends State<HomePage> {
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 0.h),
-                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16.h),
+                padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.h),
                 decoration: BoxDecoration(
                     color: Color(0xffe48822),
                     borderRadius: BorderRadius.circular(6.r)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.chat,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 4.h,
-                    ),
-                    const Text(
-                      "Chat with a health expert now",
-                      style: TextStyle(color: Colors.white),
-                    )
-                  ],
+                child: const Text(
+                  "Consult with a health expert",
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             )
@@ -497,14 +485,14 @@ class _HomePageState extends State<HomePage> {
     } else if (phoneNumber == "") {
       phoneNumber = null;
       setState(() {});
-    } else {
+    } else if(country != null && illness != null && phoneNumber != null){
       _moveToConsultaionPage();
     }
   }
 
   Widget _infoWidget() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.h),
+      margin: EdgeInsets.symmetric(horizontal: 16.h, vertical: 16.h),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.5),
@@ -525,27 +513,16 @@ class _HomePageState extends State<HomePage> {
               onButtonCLick();
             },
             child: Container(
+              alignment: Alignment.center,
               width: isLargeScreen(context) ? .4.sw : .8.sw,
               margin: EdgeInsets.symmetric(vertical: 16.h),
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+              padding:  EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
               decoration: BoxDecoration(
                   color: Color(0xffe48822),
                   borderRadius: BorderRadius.circular(6.r)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.chat,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 4.h,
-                  ),
-                  const Text(
-                    "Chat with a health expert now",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
+              child: const Text(
+                "Consult with a health expert",
+                style: TextStyle(color: Colors.white),
               ),
             ),
           )
@@ -571,7 +548,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         SizedBox(
-          width: .1.sw,
+          width: .13.sw,
           child: AppDropDown(
             hasError: country == null,
             items: Constants.countries,
@@ -604,7 +581,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         SizedBox(
-          width: .1.sw,
+          width: .14.sw,
           child: AppDropDown(
             hasError: illness == null,
             items: Constants.medicalIssues,
@@ -640,7 +617,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.max,
           children: [
             SizedBox(
-              width: 60.h,
+              width: 80.h,
               child: DropdownSearch<String>(
                 popupProps: PopupProps.menu(
                   menuProps: MenuProps(backgroundColor: Colors.white),
@@ -662,6 +639,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 items: Constants.countryCodes,
                 dropdownDecoratorProps: DropDownDecoratorProps(
+                  textAlign: TextAlign.center,
                   dropdownSearchDecoration: InputDecoration(
                       errorText: (phoneCode == null) || (phoneNumber == null)
                           ? "required"
@@ -679,7 +657,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              width: 100.h,
+              width: 120.h,
               child: TextField(
                 onChanged: (value) {
                   setState(() {
