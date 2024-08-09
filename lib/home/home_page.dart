@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
                 decoration: BoxDecoration(
                     color: Color(0xffe48822),
-                    borderRadius: BorderRadius.circular(6.r)),
+                    borderRadius: BorderRadius.circular(10.r)),
                 child: const Text(
                   "Consult with a health expert",
                   style: TextStyle(color: Colors.white),
@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                       margin: EdgeInsets.only(left: 8.h, top: 8.h),
                       decoration: BoxDecoration(
                           color: const Color(0xfff7f7f7),
-                          borderRadius: BorderRadius.circular(4.r)),
+                          borderRadius: BorderRadius.circular(10.r)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -552,7 +552,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
               decoration: BoxDecoration(
                   color: Color(0xffe48822),
-                  borderRadius: BorderRadius.circular(6.r)),
+                  borderRadius: BorderRadius.circular(10.r)),
               child: const Text(
                 "Consult with a health expert",
                 style: TextStyle(color: Colors.white),
