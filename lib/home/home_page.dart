@@ -355,7 +355,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _mainWidgetWeb() {
     return SizedBox(
-      height: .75.sh,
+      height: .84.sh,
       child: Stack(
         children: [
           _videoWidget(),
