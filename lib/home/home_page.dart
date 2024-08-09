@@ -62,6 +62,44 @@ class _HomePageState extends State<HomePage> {
         subTitle: "Marie Djomo, Rwanda - Apollo Hospitals"),
   ];
 
+  final List<TestinomialData> _howDoWeWorkData = [
+    TestinomialData(
+      dp: "https://media.crafto.app/test/300x300/457e4966-6f90-48d4-bc4f-9e1afc60caee?dimension=300x300",
+      title: "Accredited by ISO",
+      subTitle: "",
+    ),
+    TestinomialData(
+      dp: "https://media.crafto.app/test/300x300/caca2848-2979-47ee-85c9-40d9650e7b4a?dimension=300x300",
+      title: "600 handpicked doctors",
+      subTitle: "",
+    ),
+    TestinomialData(
+      dp: "https://media.crafto.app/test/300x300/d59810f3-8d8c-499b-aa54-8d14f87aec07?dimension=300x300",
+      title: "Complete Transparency on cost",
+      subTitle: "",
+    ),
+    TestinomialData(
+      dp: "https://media.crafto.app/test/300x300/cd60956d-f37d-4109-8fb0-695ed58b04ef?dimension=300x300",
+      title: "Over 10,000 Happy Customers",
+      subTitle: "",
+    ),
+    // TestinomialData(
+    //   dp: "https://media.crafto.app/test/300x300/2837269e-ea32-4e07-b1af-226ebd438ede?dimension=300x300",
+    //   title: "Fantastic Quality",
+    //   subTitle: "",
+    // ),
+    // TestinomialData(
+    //   dp: "https://media.crafto.app/test/300x300/e5abd760-0f04-4468-839d-9c1b460c7e10?dimension=300x300",
+    //   title: "Superb Customer Support",
+    //   subTitle: "",
+    // ),
+    // TestinomialData(
+    //   dp: "https://media.crafto.app/test/300x300/6ce12fd8-aa11-49c3-b82c-0cb7cec27902?dimension=300x300",
+    //   title: "Exceeded Expectations",
+    //   subTitle: "",
+    // ),
+  ];
+
   @override
   void initState() {
     AnalyticsManager.instance.amplitude.logEvent("TestingHome");
@@ -103,7 +141,7 @@ class _HomePageState extends State<HomePage> {
         shrinkWrap: true,
         children: [
           isLargeScreen(context) ? _mainWidgetLarge() : _mainWidgetWeb(),
-          SizedBox(height: isLargeScreen(context) ? .1.sh : .03.sh),
+          SizedBox(height: isLargeScreen(context) ? .1.sh : .02.sh),
           _howDoWeWork(),
           _testinomials(),
           SizedBox(
@@ -120,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                 margin: EdgeInsets.symmetric(horizontal: 0.h),
                 padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
                 decoration: BoxDecoration(
-                    color: Color(0xffe48822),
+                    color: Constants.primary,
                     borderRadius: BorderRadius.circular(10.r)),
                 child: const Text(
                   "Consult with a health expert",
@@ -163,8 +201,8 @@ class _HomePageState extends State<HomePage> {
                 showIndicator: true,
                 slideIndicator: const CircularSlideIndicator(
                     slideIndicatorOptions: SlideIndicatorOptions(
-                        indicatorBorderColor: Colors.green,
-                        currentIndicatorColor: Colors.green,
+                        indicatorBorderColor:Constants.primary,
+                        currentIndicatorColor: Constants.primary,
                         indicatorBackgroundColor: Colors.white)),
               ),
               items: _testinomialsData.map((data) {
@@ -183,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100.r),
-                                border: Border.all(color: Colors.green)),
+                                border: Border.all(color: Constants.primary)),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100.r),
                               child: Image.network(
@@ -212,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                                   height: 8,
                                 ),
                                 Text(
-                                  data.subTitle,
+                                  data.subTitle ?? "",
                                   style: const TextStyle(
                                       color: Colors.grey, fontSize: 11),
                                 )
@@ -268,24 +306,71 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.h),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            "Medical tourism journey made simple.",
+            "Why Choose us?",
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+                color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 8.h,
           ),
-          isLargeScreen(context)
-              ? Image.network(
-                  width: .6.sw,
-                  "https://media.crafto.app/test/3319x756/e0f3a805-1d4e-4f72-9236-5ec99631e811?dimension=3319x756")
-              : Image.network(
-                  width: .8.sw,
-                  "https://media.crafto.app/test/1896x1635/ef7c5d5c-ca1e-4c88-9804-231e34a5e6a2?dimension=1896x1635")
+          _tripBenefits()
+          // isLargeScreen(context)
+          //     ? Image.network(
+          //         width: .6.sw,
+          //         "https://media.crafto.app/test/3319x756/e0f3a805-1d4e-4f72-9236-5ec99631e811?dimension=3319x756")
+          //     : Image.network(
+          //         width: .8.sw,
+          //         "https://media.crafto.app/test/1896x1635/ef7c5d5c-ca1e-4c88-9804-231e34a5e6a2?dimension=1896x1635")
         ],
+      ),
+    );
+  }
+
+  Widget _tripBenefits() {
+    return Container(
+      color: Colors.white,
+      margin: const EdgeInsets.only(top: 16, left: 16),
+      child: Padding(
+          padding: const EdgeInsets.all(0),
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: _howDoWeWorkData.length,
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,),
+            itemBuilder: (context, index) {
+              final item = _howDoWeWorkData[index];
+              return _itemImageWithText(item.dp, item.title);
+            },
+          )),
+    );
+  }
+
+  Widget _itemImageWithText(String image, String text) {
+    return SizedBox(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Image.network(
+              image,
+              height: 80,
+              width: 80,
+              fit: BoxFit.contain,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(text,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 12))
+          ],
+        ),
       ),
     );
   }
@@ -494,7 +579,7 @@ class _HomePageState extends State<HomePage> {
                 margin: EdgeInsets.symmetric(horizontal: 0.h),
                 padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.h),
                 decoration: BoxDecoration(
-                    color: Color(0xffe48822),
+                    color: Constants.primary,
                     borderRadius: BorderRadius.circular(6.r)),
                 child: const Text(
                   "Consult with a health expert",
@@ -551,7 +636,7 @@ class _HomePageState extends State<HomePage> {
               margin: EdgeInsets.symmetric(vertical: 16.h),
               padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
               decoration: BoxDecoration(
-                  color: Color(0xffe48822),
+                  color: Constants.primary,
                   borderRadius: BorderRadius.circular(10.r)),
               child: const Text(
                 "Consult with a health expert",

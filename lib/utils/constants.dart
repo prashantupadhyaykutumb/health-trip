@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 class Constants {
+  static const primary = Color(0xffFF6064);
   static const amplitudeApiKey = "c56de989f1940115da9025e33cd8f15c";
   static final List<String> countries = [
     "Afghanistan",
