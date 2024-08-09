@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
   String? illness = "";
   String? phoneNumber = "";
   String? phoneCode = "";
+  final ScrollController _scrollController = ScrollController();
   final List<TestinomialData> _testinomialsData = [
     TestinomialData(
         dp:
@@ -84,18 +85,50 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  _scrollToTop() {
+    _scrollController.animateTo(
+      _scrollController.position.minScrollExtent,
+      curve: Curves.easeOut,
+      duration: const Duration(milliseconds: 500),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
+        controller: _scrollController,
         shrinkWrap: true,
         children: [
           isLargeScreen(context) ? _mainWidgetLarge() : _mainWidgetWeb(),
           SizedBox(height: isLargeScreen(context) ? .1.sh : 16.h),
           _howDoWeWork(),
           _testinomials(),
+          SizedBox(
+            height: 32.h,
+          ),
+          InkWell(
+            onTap: () {
+              _scrollToTop();
+            },
+            child: UnconstrainedBox(
+              child: Container(
+                alignment: Alignment.center,
+                width: isLargeScreen(context) ? .3.sw : .7.sw,
+                margin: EdgeInsets.symmetric(horizontal: 0.h),
+                padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
+                decoration: BoxDecoration(
+                    color: Color(0xffe48822),
+                    borderRadius: BorderRadius.circular(6.r)),
+                child: const Text(
+                  "Consult with a health expert",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
           SizedBox(
             height: .1.sh,
           ),
@@ -485,7 +518,7 @@ class _HomePageState extends State<HomePage> {
     } else if (phoneNumber == "") {
       phoneNumber = null;
       setState(() {});
-    } else if(country != null && illness != null && phoneNumber != null){
+    } else if (country != null && illness != null && phoneNumber != null) {
       _moveToConsultaionPage();
     }
   }
@@ -516,7 +549,7 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.center,
               width: isLargeScreen(context) ? .4.sw : .8.sw,
               margin: EdgeInsets.symmetric(vertical: 16.h),
-              padding:  EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
+              padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
               decoration: BoxDecoration(
                   color: Color(0xffe48822),
                   borderRadius: BorderRadius.circular(6.r)),
