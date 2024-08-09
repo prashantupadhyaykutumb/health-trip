@@ -655,14 +655,18 @@ class _HomePageState extends State<HomePage> {
                 popupProps: PopupProps.menu(
                   menuProps: MenuProps(backgroundColor: Colors.white),
                   showSelectedItems: true,
-                  showSearchBox: false,
+                  showSearchBox: true,
                   fit: FlexFit.loose,
                   searchFieldProps: TextFieldProps(
+                    textAlignVertical: TextAlignVertical.top,
                     decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.zero,
                       hintText: "Search",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
                       icon: Icon(
                         Icons.search,
                         color: Colors.black,
+                        size: 20,
                       ),
                     ),
                     style: TextStyle(
@@ -806,14 +810,18 @@ class _HomePageState extends State<HomePage> {
                   popupProps: PopupProps.menu(
                     menuProps: MenuProps(backgroundColor: Colors.white),
                     showSelectedItems: true,
-                    showSearchBox: false,
+                    showSearchBox: true,
                     fit: FlexFit.loose,
                     searchFieldProps: TextFieldProps(
+                      textAlignVertical: TextAlignVertical.top,
                       decoration: const InputDecoration(
                         hintText: "Search",
+                        hintStyle: TextStyle(fontSize: 10),
+                        contentPadding: EdgeInsets.zero,
                         icon: Icon(
                           Icons.search,
                           color: Colors.black,
+                          size: 20,
                         ),
                       ),
                       style: TextStyle(
@@ -823,6 +831,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   items: Constants.countryCodes,
                   dropdownDecoratorProps: DropDownDecoratorProps(
+                    textAlign: TextAlign.center,
                     dropdownSearchDecoration: InputDecoration(
                         errorText: (phoneCode == null) || (phoneNumber == null)
                             ? "required"

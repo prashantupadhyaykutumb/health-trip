@@ -31,14 +31,18 @@ class _AppDropDownState extends State<AppDropDown> {
       popupProps: PopupProps.menu(
           menuProps: MenuProps(backgroundColor: Colors.white),
           showSelectedItems: true,
-          showSearchBox: false,
+          showSearchBox: true,
           fit: FlexFit.loose,
           searchFieldProps: TextFieldProps(
+            textAlignVertical: TextAlignVertical.top,
               decoration: const InputDecoration(
+                contentPadding: EdgeInsets.all(0),
                 hintText: "Search",
+                hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
                 icon: Icon(
                   Icons.search,
                   color: Colors.black,
+                  size: 20,
                 ),
               ),
               style: TextStyle(
