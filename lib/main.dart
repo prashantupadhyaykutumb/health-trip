@@ -3,6 +3,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medical_tour/home/consulation_page_v2.dart';
 import 'package:medical_tour/home/consultation_page.dart';
 import 'package:medical_tour/home/home_page.dart';
 import 'package:medical_tour/home/success_page.dart';
@@ -21,7 +22,7 @@ void main() async {
 Future<void> _initAmplitude() async {
   try {
     await AnalyticsManager.instance.init();
-    await AnalyticsManager.instance.amplitude.logEvent("TestingLaunch");
+    await AnalyticsManager.instance.amplitude.logEvent("Launch");
   } catch (e) {
     print(e);
   }
@@ -56,6 +57,8 @@ class MainApp extends StatelessWidget {
           return _getMaterialPageRoute(settings, "home");
         } else if (routeName == "/") {
           return null;
+        } else if (routeName == "/consultation2") {
+          return _getMaterialPageRoute(settings, "consultation2");
         } else if (routeName == "/success") {
           return _getMaterialPageRoute(settings, "success");
         } else {
@@ -68,7 +71,17 @@ class MainApp extends StatelessWidget {
   _getMaterialPageRoute(RouteSettings settings, String routeName) {
     return MaterialPageRoute(
       settings: settings,
-      builder: (_) => routeName == "success" ? SuccessPage() : ConsultationPage(),
+      builder: (_) => _getPage(routeName),
     );
+  }
+
+  Widget _getPage(String route) {
+    if (route == "success") {
+      return const SuccessPage();
+    } else if (route == "consultation2") {
+      return const ConsultationPageV2();
+    } else {
+      return const ConsultationPage();
+    }
   }
 }
